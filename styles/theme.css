@@ -1,0 +1,40 @@
+@font-face {
+  font-family: BalooBhaijaan2;
+  src: url('../fonts/BalooBhaijaan2.ttf');
+}
+
+.use-font-bb2 {
+  font-family: BalooBhaijaan2;
+}
+
+.btn-primary {
+  background: #ffe4eb;
+}
+
+.btn-secondary {
+  background: #ffffff;
+}
+
+.btn {
+  height: 60px;
+  padding: 0 35px;
+  margin: 0 10px;
+  border: 3px solid #7b6e72;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px 0 #ceb7be;
+  font-size: 28px;
+  line-height: 60px;
+  color: #7b6e72;
+  text-align: center;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  box-shadow: 0 3px 20px 0 #ceb7be;
+}
+
+.btn:active {
+  box-shadow: 0 2px 5px 0 #ceb7be;
+  transform: scale(98%, 98%);
+}
