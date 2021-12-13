@@ -3,38 +3,69 @@
   src: url('../fonts/BalooBhaijaan2.ttf');
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--main-background-color);
+}
+
+:root {
+  --bgc-light: #fff;
+  --btn-prc-light: #ffe4eb;
+  --btn-sec-light: #fff;
+  --btn-txc-light: #7b6e72;
+  --btn-sdc-light: #ceb7be;
+  
+  --bgc-night: #000;
+  --btn-prc-night: #d8bbc4;
+  --btn-sec-night: #000;
+  --btn-txc-night: #ffe3eb;
+  --btn-sdc-night: #3f383a;
+
+  --main-background-color: var(--bgc-light);
+  --main-btn-primary-color: var(--btn-prc-light);
+  --main-btn-secondary-color: var(--btn-sec-light);
+  --main-btn-text-color: var(--btn-txc-light);
+  --main-btn-shadow-color: var(--btn-sdc-light);
+
+  --pane-padding: 5px 42px;
+}
+
 .use-font-bb2 {
   font-family: BalooBhaijaan2;
+  color: var(--main-btn-text-color);
 }
 
 .btn-primary {
-  background: #ffe4eb;
+  background: var(--main-btn-primary-color);
 }
 
 .btn-secondary {
-  background: #ffffff;
+  background: var(--main-btn-secondary-color);
+}
+
+.btn-top {
+  width: 140px;
 }
 
 .btn {
-  height: 60px;
-  padding: 0 35px;
-  margin: 0 10px;
-  border: 3px solid #7b6e72;
+  height: 55px;
+  margin-left: 20px;
+  border: 3px solid var(--main-btn-text-color);
   border-radius: 10px;
-  box-shadow: 0 2px 5px 0 #ceb7be;
-  font-size: 28px;
-  line-height: 60px;
-  color: #7b6e72;
+  box-shadow: 0 2px 5px 0 var(--main-btn-shadow-color);
+  font-size: 25px;
+  line-height: 55px;
   text-align: center;
   transition-duration: 0.2s;
   cursor: pointer;
 }
 
 .btn:hover {
-  box-shadow: 0 3px 20px 0 #ceb7be;
+  box-shadow: 0 3px 20px 0 var(--main-btn-shadow-color);
 }
 
 .btn:active {
-  box-shadow: 0 2px 5px 0 #ceb7be;
+  box-shadow: 0 2px 5px 0 var(--main-btn-shadow-color);
   transform: scale(98%, 98%);
 }

@@ -2,23 +2,60 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="styles/theme.css">
-    <style type="text/css">
-        .home-top {
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" type="text/css" href="styles/theme.css">
+  <style type="text/css">
+    .home-top {
+      margin: 20px 40px;
+      width: calc(100vw - 80px);
+      position: fixed;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        }
-    </style>
+    .home-top-info {
+      display: flex;
+      align-items: center;
+      min-width: 200px;
+    }
+
+    .home-top-btns {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="home">
-        <button class="btn-primary btn use-font-bb2">Test1</button>
-        <button class="btn-secondary btn use-font-bb2">Test2</button>
+  <div class="home">
+    <div class="home-top">
+      <div class="home-top-info">
+        <object style="height: 45px;" data="/icons/love.svg" type="image/svg+xml"></object>
+        <span style="font-size: 25px; margin: 0 10px;" class="use-font-bb2">PROJECT F</span>
+      </div>
+      <div class="home-top-btns">
+        <button class="btn-top btn-secondary btn use-font-bb2">List</button>
+        <button class="btn-top btn-secondary btn use-font-bb2">Table</button>
+        <button class="btn-top btn-secondary btn use-font-bb2">Sign in</button>
+        <button id="testSW" class="btn-top btn-primary btn use-font-bb2">Home</button>
+      </div>
     </div>
+  </div>
+
+  <script type="text/javascript">
+    let testSW = document.getElementById("testSW")
+    let mainTheme = document.documentElement
+    testSW.onclick = function () {
+      mainTheme.style.setProperty("--main-background-color", "var(--bgc-night)")
+      mainTheme.style.setProperty("--main-btn-primary-color", "var(--btn-prc-night)")
+    }
+  </script>
+
 </body>
 
 </html>
