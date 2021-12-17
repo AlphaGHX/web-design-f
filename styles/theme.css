@@ -50,16 +50,17 @@ body {
 .btn-circle {
   width: 55px;
   border-radius: 30px !important;
+  line-height: 50px !important;
 }
 
 .btn {
   height: 55px;
   margin-left: 20px;
   border: 3px solid var(--main-btn-text-color);
-  border-radius: 10px;
+  border-radius: 30px;
   box-shadow: 0 2px 5px 0 var(--main-btn-shadow-color);
   font-size: 25px;
-  line-height: 50px;
+  line-height: 52px;
   text-align: center;
   transition-duration: 0.2s;
   cursor: pointer;
