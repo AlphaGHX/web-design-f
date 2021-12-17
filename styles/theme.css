@@ -7,6 +7,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--main-background-color);
+  transition-duration: 0.5s;
 }
 
 :root {
@@ -16,19 +17,17 @@ body {
   --btn-txc-light: #7b6e72;
   --btn-sdc-light: #ceb7be;
   
-  --bgc-night: #000;
-  --btn-prc-night: #d8bbc4;
-  --btn-sec-night: #000;
-  --btn-txc-night: #ffe3eb;
-  --btn-sdc-night: #3f383a;
+  --bgc-night: #252122;
+  --btn-prc-night: #746368;
+  --btn-sec-night: #494043;
+  --btn-txc-night: #f0d8df;
+  --btn-sdc-night: #b4a0a6;
 
   --main-background-color: var(--bgc-light);
   --main-btn-primary-color: var(--btn-prc-light);
   --main-btn-secondary-color: var(--btn-sec-light);
   --main-btn-text-color: var(--btn-txc-light);
   --main-btn-shadow-color: var(--btn-sdc-light);
-
-  --pane-padding: 5px 42px;
 }
 
 .use-font-bb2 {
@@ -48,6 +47,11 @@ body {
   width: 140px;
 }
 
+.btn-circle {
+  width: 55px;
+  border-radius: 30px !important;
+}
+
 .btn {
   height: 55px;
   margin-left: 20px;
@@ -55,7 +59,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 2px 5px 0 var(--main-btn-shadow-color);
   font-size: 25px;
-  line-height: 55px;
+  line-height: 50px;
   text-align: center;
   transition-duration: 0.2s;
   cursor: pointer;
