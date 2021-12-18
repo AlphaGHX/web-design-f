@@ -3,6 +3,29 @@
   src: url('../fonts/BalooBhaijaan2.ttf');
 }
 
+/* Public Style */
+.main-top {
+  margin: 20px 40px;
+  width: calc(100vw - 80px);
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.main-top-info {
+  display: flex;
+  align-items: center;
+  min-width: 160px;
+}
+
+.main-top-btns {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 body {
   margin: 0;
   padding: 0;
