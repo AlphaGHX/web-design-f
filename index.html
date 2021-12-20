@@ -11,7 +11,43 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
   <script src="https://kit.fontawesome.com/49f009723b.js" crossorigin="anonymous"></script>
   <style type="text/css">
-    
+    .main-content {
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      color: var(--main-btn-text-color);
+    }
+
+    .main-content>div {
+      position: relative;
+    }
+
+    .main-content-left {
+      width: 40%;
+    }
+
+    .main-content-left-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-30%, -50%);
+      transition-duration: 0.5s;
+    }
+
+    .main-content-right {
+      width: 60%;
+    }
+
+    .main-content-right-icon {
+      position: absolute;
+      top: 55%;
+      left: 45%;
+      transform: translate(-50%, -50%);
+    }
+
+    #toLeft {
+      margin-left: 0px;
+    }
   </style>
 </head>
 
@@ -40,11 +76,27 @@
         </button>
       </div>
     </div>
-    <div class="main-content">
+    <div class="main-content use-font-bb2">
       <div class="main-content-left">
-
+        <div id="switchText" class="main-content-left-text">
+          <div style="font-size:80px; line-height: 80px;">Sketch</div>
+          <div style="font-size:30px; line-height: 40px;">A best tool for designer</div>
+          <!-- 切换按钮 -->
+          <!-- <div>
+            <button id="toLeft" class="btn-circle btn-secondary btn">
+              <i style="color: var(--main-btn-text-color)" class="fas fa-adjust"></i>
+            </button>
+            <button id="toRight" class="btn-circle btn-secondary btn">
+              <i style="color: var(--main-btn-text-color)" class="fas fa-adjust"></i>
+            </button>
+          </div> -->
+        </div>
       </div>
-      <div class="main-content-right"></div>
+      <div class="main-content-right">
+        <div class="main-content-right-icon">
+          <i id="switchIcon" style="font-size: 400px; transition-duration: 0.5s;" class="fab fa-sketch"></i>
+        </div>
+      </div>
     </div>
   </div>
   </div>
@@ -55,6 +107,41 @@
       nowThemeMode === THEME_MODE.LIGHT ? nowThemeMode = THEME_MODE.NIGHT : nowThemeMode = THEME_MODE.LIGHT
       setThemeMode(nowThemeMode)
     }
+
+    const switchIcon = (element, iconSet, iconInfo) => {
+      let jqElements = $(element)
+      jqElements.css("opacity", 0)
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          jqElements.removeClass()
+          jqElements.addClass(iconSet)
+          jqElements.addClass(iconInfo)
+          resolve()
+        }, 500)
+      }).then(() => {
+        jqElements.css("opacity", 1)
+      })
+    }
+
+    const switchText = (element, friText, secText) => {
+      let jqElements = $(element)
+      jqElements.css("opacity", 0)
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          let texts = jqElements.children("div")
+          texts.eq(0).text(friText)
+          texts.eq(1).text(secText)
+          resolve()
+        }, 500)
+      }).then(() => {
+        jqElements.css("opacity", 1)
+      })
+    }
+
+    setTimeout(() => {
+      switchIcon(document.getElementById("switchIcon"), "fab", "fa-figma")
+      switchText(document.getElementById("switchText"), "Figma", "Best mutil user")
+    }, 1000)
   </script>
 
 </body>
