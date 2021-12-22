@@ -8,7 +8,7 @@
   <title>Home</title>
   <link rel="stylesheet" type="text/css" href="styles/theme.css">
   <script type="text/javascript" src="utils/utils.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="utils/jquery-min.js"></script>
   <script src="https://kit.fontawesome.com/49f009723b.js" crossorigin="anonymous"></script>
   <style type="text/css">
     .main-content {
@@ -16,6 +16,7 @@
       min-height: 600px;
       display: flex;
       color: var(--main-btn-text-color);
+      overflow: hidden;
     }
 
     .main-content>div {
@@ -23,30 +24,29 @@
     }
 
     .main-content-left {
-      width: 40%;
-    }
-
-    .main-content-left-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-30%, -50%);
-      transition-duration: 0.5s;
+      width: 50%;
     }
 
     .main-content-right {
-      width: 60%;
+      width: 50%;
+    }
+
+    .main-content-left-text {
+      width: 80%;
+      position: absolute;
+      top: 50%;
+      left: 40%;
+      transform: translate(-30%, -50%);
+      transition: 1s cubic-bezier(.13, .43, .14, 1);
     }
 
     .main-content-right-icon {
       position: absolute;
       top: 55%;
-      left: 45%;
+      left: 50%;
       transform: translate(-50%, -50%);
-    }
-
-    #toLeft {
-      margin-left: 0px;
+      transition: 1s cubic-bezier(.13, .43, .14, 1);
+      cursor: pointer;
     }
   </style>
 </head>
@@ -79,8 +79,8 @@
     <div class="main-content use-font-bb2">
       <div class="main-content-left">
         <div id="switchText" class="main-content-left-text">
-          <div style="font-size:80px; line-height: 80px;">Sketch</div>
-          <div style="font-size:30px; line-height: 40px;">A best tool for designer</div>
+          <div style="font-size:80px; line-height: 100px;"></div>
+          <div style="font-size:25px; line-height: 40px;"></div>
           <!-- 切换按钮 -->
           <!-- <div>
             <button id="toLeft" class="btn-circle btn-secondary btn">
@@ -93,8 +93,8 @@
         </div>
       </div>
       <div class="main-content-right">
-        <div class="main-content-right-icon">
-          <i id="switchIcon" style="font-size: 400px; transition-duration: 0.5s;" class="fab fa-sketch"></i>
+        <div id="switchIcon" class="main-content-right-icon">
+          <i style="font-size: 400px;" class=""></i>
         </div>
       </div>
     </div>
@@ -102,24 +102,31 @@
   </div>
 
   <script type="text/javascript">
+    //黑夜模式开关
     let themeModeSW = document.getElementById("themeModeSW")
     themeModeSW.onclick = () => {
       nowThemeMode === THEME_MODE.LIGHT ? nowThemeMode = THEME_MODE.NIGHT : nowThemeMode = THEME_MODE.LIGHT
       setThemeMode(nowThemeMode)
     }
 
+    //主页切换方法
     const switchIcon = (element, iconSet, iconInfo) => {
       let jqElements = $(element)
       jqElements.css("opacity", 0)
       new Promise((resolve, reject) => {
         setTimeout(() => {
-          jqElements.removeClass()
-          jqElements.addClass(iconSet)
-          jqElements.addClass(iconInfo)
+          let icons = jqElements.children("i").eq(0)
+          icons.removeClass()
+          icons.addClass(iconSet)
+          icons.addClass(iconInfo)
           resolve()
-        }, 500)
+        }, 1000)
       }).then(() => {
-        jqElements.css("opacity", 1)
+        jqElements.addClass("notransition")
+        jqElements.css("transform", "translate(0, -50%) scale(120%, 120%) rotate(5deg)")
+        jqElements[0].offsetHeight  //清除缓存样式，强制重排
+        jqElements.removeClass("notransition")
+        jqElements.css("opacity", 1).css("transform", "")
       })
     }
 
@@ -132,16 +139,77 @@
           texts.eq(0).text(friText)
           texts.eq(1).text(secText)
           resolve()
-        }, 500)
+        }, 1000)
       }).then(() => {
-        jqElements.css("opacity", 1)
+        jqElements.addClass("notransition")
+        jqElements.css("transform", "translate(-70%, -50%)")
+        jqElements[0].offsetHeight
+        jqElements.removeClass("notransition")
+        jqElements.css("opacity", 1).css("transform", "")
       })
     }
 
-    setTimeout(() => {
-      switchIcon(document.getElementById("switchIcon"), "fab", "fa-figma")
-      switchText(document.getElementById("switchText"), "Figma", "Best mutil user")
-    }, 1000)
+    //主页数据
+    const pageData = [
+      {
+        text: ["Welcome", "Welcome to my page, I will introduce some interesting development software that I have used."],
+        icon: ["fab", "fa-canadian-maple-leaf"],
+        url: "#"
+      },
+      {
+        text: ["Sketch", "Sketch gives you all the tools you need for a truly collaborative design process."],
+        icon: ["fab", "fa-sketch"],
+        url: "https://www.sketch.com"
+      },
+      {
+        text: ["Figma", "Figma connects everyone in the design process so teams can deliver better products, faster."],
+        icon: ["fab", "fa-figma"],
+        url: "https://www.figma.com"
+      },
+      {
+        text: ["Vue", "A progressive framework for building user interfaces."],
+        icon: ["fab", "fa-vuejs"],
+        url: "https://vuejs.org"
+      },
+      {
+        text: ["React", "A JavaScript library for building user interfaces."],
+        icon: ["fab", "fa-react"],
+        url: "https://reactjs.org"
+      },
+      {
+        text: ["Angular", "Angular is a platform for building mobile and desktop web applications."],
+        icon: ["fab", "fa-angular"],
+        url: "https://angular.io"
+      },
+    ]
+
+    //当前数据item
+    var nowItem = 0
+
+    //循环播放方法
+    const playSwitch = (timeout) => {
+      switchText(document.getElementById("switchText"), pageData[nowItem].text[0], pageData[nowItem].text[1])
+      switchIcon(document.getElementById("switchIcon"), pageData[nowItem].icon[0], pageData[nowItem].icon[1])
+      nowItem++
+      const timeInterval = setInterval(() => {
+        if (nowItem === pageData.length) {
+          nowItem = 0
+        }
+        switchText(document.getElementById("switchText"), pageData[nowItem].text[0], pageData[nowItem].text[1])
+        switchIcon(document.getElementById("switchIcon"), pageData[nowItem].icon[0], pageData[nowItem].icon[1])
+        nowItem++
+      }, timeout)
+      // clearInterval(nowThemeMode)
+      // setInterval(nowThemeMode)
+    }
+
+    //单击跳转链接
+    $("#switchIcon").click(() => {
+      window.open(pageData[nowItem - 1].url)
+    })
+
+    //开始循环播放
+    playSwitch(5000)
   </script>
 
 </body>

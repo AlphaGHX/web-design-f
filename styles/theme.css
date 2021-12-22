@@ -54,7 +54,7 @@ body {
 }
 
 .use-font-bb2 {
-  font-family: BalooBhaijaan2;
+  font-family: BalooBhaijaan2 !important;
   color: var(--main-btn-text-color);
 }
 
@@ -96,4 +96,11 @@ body {
 .btn:active {
   box-shadow: 0 2px 5px 0 var(--main-btn-shadow-color);
   transform: scale(98%, 98%);
+}
+
+.notransition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
 }
