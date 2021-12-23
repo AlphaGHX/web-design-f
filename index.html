@@ -38,6 +38,15 @@
       left: 40%;
       transform: translate(-30%, -50%);
       transition: 1s cubic-bezier(.13, .43, .14, 1);
+      opacity: 0;
+    }
+
+    .main-content-left-btn {
+      width: 80%;
+      position: absolute;
+      top: 70%;
+      left: 40%;
+      transform: translate(-30%, -50%);
     }
 
     .main-content-right-icon {
@@ -47,6 +56,31 @@
       transform: translate(-50%, -50%);
       transition: 1s cubic-bezier(.13, .43, .14, 1);
       cursor: pointer;
+    }
+
+    .btn-small {
+      font-family: BalooBhaijaan2;
+      height: 40px;
+      min-width: 40px;
+      border: 3px solid var(--main-btn-text-color);
+      border-radius: 30px;
+      box-shadow: 0 2px 5px 0 var(--main-btn-shadow-color);
+      font-size: 18px;
+      line-height: 37px;
+      text-align: center;
+      transition-duration: 0.2s;
+      cursor: pointer;
+      color: var(--main-btn-text-color);
+      margin-right: 20px;
+    }
+
+    .btn-small:hover {
+      box-shadow: 0 3px 20px 0 var(--main-btn-shadow-color);
+    }
+
+    .btn-small:active {
+      box-shadow: 0 2px 5px 0 var(--main-btn-shadow-color);
+      transform: scale(98%, 98%);
     }
   </style>
 </head>
@@ -78,22 +112,21 @@
     </div>
     <div class="main-content use-font-bb2">
       <div class="main-content-left">
-        <div id="switchText" class="main-content-left-text">
+        <div id="switchText" class="main-content-left-text" onmouseenter="switchPause()" onmouseleave="switchPlay()">
           <div style="font-size:80px; line-height: 100px;"></div>
           <div style="font-size:25px; line-height: 40px;"></div>
-          <!-- 切换按钮 -->
-          <!-- <div>
-            <button id="toLeft" class="btn-circle btn-secondary btn">
-              <i style="color: var(--main-btn-text-color)" class="fas fa-adjust"></i>
-            </button>
-            <button id="toRight" class="btn-circle btn-secondary btn">
-              <i style="color: var(--main-btn-text-color)" class="fas fa-adjust"></i>
-            </button>
-          </div> -->
+          <div style="height:20px"></div>
+          <button id="toLeft" style="text-indent: -1px;" class="btn-secondary btn-small" onclick="toLeft()">
+            <i style="color: var(--main-btn-text-color)" class="fas fa-angle-left"></i>
+          </button>
+          <button id="toRight" style="text-indent: 1px;" class="btn-secondary btn-small" onclick="toRight()">
+            <i style="color: var(--main-btn-text-color)" class="fas fa-angle-right"></i>
+          </button>
         </div>
       </div>
       <div class="main-content-right">
-        <div id="switchIcon" class="main-content-right-icon">
+        <div id="switchIcon" class="main-content-right-icon" onclick="toUrl()" onmouseenter="switchPause()"
+          onmouseleave="switchPlay()">
           <i style="font-size: 400px;" class=""></i>
         </div>
       </div>
@@ -109,10 +142,10 @@
       setThemeMode(nowThemeMode)
     }
 
-    //主页切换方法
+    //主页图片切换方法
     const switchIcon = (element, iconSet, iconInfo) => {
       let jqElements = $(element)
-      jqElements.css("opacity", 0)
+      jqElements.css("opacity", 0).css("filter", "blur(15px)")
       new Promise((resolve, reject) => {
         setTimeout(() => {
           let icons = jqElements.children("i").eq(0)
@@ -126,13 +159,14 @@
         jqElements.css("transform", "translate(0, -50%) scale(120%, 120%) rotate(5deg)")
         jqElements[0].offsetHeight  //清除缓存样式，强制重排
         jqElements.removeClass("notransition")
-        jqElements.css("opacity", 1).css("transform", "")
+        jqElements.css("opacity", 1).css("transform", "").css("filter", "")
       })
     }
 
+    //主页文字切换方法
     const switchText = (element, friText, secText) => {
       let jqElements = $(element)
-      jqElements.css("opacity", 0)
+      jqElements.css("opacity", 0).css("filter", "blur(15px)")
       new Promise((resolve, reject) => {
         setTimeout(() => {
           let texts = jqElements.children("div")
@@ -145,14 +179,14 @@
         jqElements.css("transform", "translate(-70%, -50%)")
         jqElements[0].offsetHeight
         jqElements.removeClass("notransition")
-        jqElements.css("opacity", 1).css("transform", "")
+        jqElements.css("opacity", 1).css("transform", "").css("filter", "")
       })
     }
 
     //主页数据
     const pageData = [
       {
-        text: ["Welcome", "Welcome to my page, I will introduce some interesting development software that I have used."],
+        text: ["Hello!", "Welcome to my page, I will introduce some interesting development software that I have used."],
         icon: ["fab", "fa-canadian-maple-leaf"],
         url: "#"
       },
@@ -183,30 +217,68 @@
       },
     ]
 
-    //当前数据item
+    //当前数据
     var nowItem = 0
+    var timeInterval
+    var timeTimeout
+
+    //设置当前页面
+    const setPage = (item) => {
+      console.log(item);
+      switchText(document.getElementById("switchText"), pageData[item].text[0], pageData[item].text[1])
+      switchIcon(document.getElementById("switchIcon"), pageData[item].icon[0], pageData[item].icon[1])
+    }
 
     //循环播放方法
     const playSwitch = (timeout) => {
-      switchText(document.getElementById("switchText"), pageData[nowItem].text[0], pageData[nowItem].text[1])
-      switchIcon(document.getElementById("switchIcon"), pageData[nowItem].icon[0], pageData[nowItem].icon[1])
+      setPage(nowItem)
       nowItem++
-      const timeInterval = setInterval(() => {
+      timeInterval = setInterval(() => {
         if (nowItem === pageData.length) {
           nowItem = 0
         }
-        switchText(document.getElementById("switchText"), pageData[nowItem].text[0], pageData[nowItem].text[1])
-        switchIcon(document.getElementById("switchIcon"), pageData[nowItem].icon[0], pageData[nowItem].icon[1])
+        setPage(nowItem)
         nowItem++
       }, timeout)
-      // clearInterval(nowThemeMode)
-      // setInterval(nowThemeMode)
     }
 
     //单击跳转链接
-    $("#switchIcon").click(() => {
+    const toUrl = () => {
       window.open(pageData[nowItem - 1].url)
-    })
+    }
+
+    //鼠标进入范围暂停播放
+    const switchPause = () => {
+      clearInterval(timeInterval)
+      clearTimeout(timeTimeout)
+    }
+
+    //鼠标离开范围继续3秒后播放
+    const switchPlay = () => {
+      timeTimeout = setTimeout(() => {
+        playSwitch(5000)
+      }, 3000)
+    }
+
+    //向左切换
+    const toLeft = () => {
+      if (nowItem > 1) {
+        nowItem -= 2
+      } else {
+        nowItem = pageData.length - 1
+      }
+      setPage(nowItem)
+      nowItem++
+    }
+
+    //向右切换
+    const toRight = () => {
+      if (nowItem === pageData.length) {
+        nowItem = 0
+      }
+      setPage(nowItem)
+      nowItem++
+    }
 
     //开始循环播放
     playSwitch(5000)
