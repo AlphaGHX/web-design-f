@@ -231,6 +231,9 @@
 
     //循环播放方法
     const playSwitch = (timeout) => {
+      if (nowItem === pageData.length) {
+        nowItem = 0
+      }
       setPage(nowItem)
       nowItem++
       timeInterval = setInterval(() => {
