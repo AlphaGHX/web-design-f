@@ -1,3 +1,4 @@
+// 黑夜模式与白天模式
 const setThemeMode = (mode) => {
   const themeData = {
     '--main-background-color': 'var(--bgc-' + mode + ')',
@@ -27,6 +28,22 @@ let nowThemeMode = sessionStorage.nowThemeMode
 
 setThemeMode(nowThemeMode)
 
+// 顶栏部分
+
+// 顶栏跳转
 const toPage = (data) => {
   window.location.href = data.getAttribute('data-page') + '.html'
 }
+
+// 顶栏动画
+const switchTop = () => {
+  let jqElements = $('.main-top')
+  jqElements.css('top', '-100px')
+  setTimeout(() => {
+    jqElements.css('top', '0')
+  }, 1000)
+}
+
+$(document).ready(() => {
+  switchTop()
+})

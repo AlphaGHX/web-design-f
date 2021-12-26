@@ -12,6 +12,8 @@
   justify-content: space-between;
   align-items: center;
   z-index: 10;
+  top: -100;
+  transition: 1s cubic-bezier(.13, .43, .14, 1);
 }
 
 .main-top-info {
