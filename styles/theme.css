@@ -5,7 +5,7 @@
 
 /* Public Style */
 .main-top {
-  margin: 20px 40px;
+  padding: 20px 40px;
   width: calc(100vw - 80px);
   position: fixed;
   display: flex;
@@ -13,7 +13,11 @@
   align-items: center;
   z-index: 10;
   top: -100;
-  transition: 1s cubic-bezier(.13, .43, .14, 1);
+  transition: 1s cubic-bezier(0.13, 0.43, 0.14, 1);
+  backdrop-filter: blur(30px);
+  background-color: var(--main-top-color);
+  border-bottom: 0;
+  box-shadow: none;
 }
 
 .main-top-info {
@@ -31,24 +35,31 @@
 body {
   margin: 0;
   padding: 0;
+
   background-color: var(--main-background-color);
   transition-duration: 0.5s;
 }
 
 :root {
+  margin: 0;
+  padding: 0;
+
   --bgc-light: #fff;
+  --top-light: #fffc;
   --btn-prc-light: #ffe4eb;
   --btn-sec-light: #fff9fb;
   --btn-txc-light: #7b6e72;
   --btn-sdc-light: #ceb7be;
-  
+
   --bgc-night: #252122;
+  --top-night: #252122cc;
   --btn-prc-night: #746368;
   --btn-sec-night: #494043;
   --btn-txc-night: #f0d8df;
   --btn-sdc-night: #b4a0a6;
 
   --main-background-color: var(--bgc-light);
+  --main-top-color: var(--top-light);
   --main-btn-primary-color: var(--btn-prc-light);
   --main-btn-secondary-color: var(--btn-sec-light);
   --main-btn-text-color: var(--btn-txc-light);

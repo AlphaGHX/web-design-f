@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sketch</title>
+  <link rel="stylesheet" type="text/css" href="styles/theme.css">
+  <link rel="stylesheet" type="text/css" href="styles/font-awesome-min.css">
+  <script src="utils/jquery-min.js"></script>
+  <!-- <script src="https://kit.fontawesome.com/49f009723b.js" crossorigin="anonymous"></script> -->
+  <script type="text/javascript" src="utils/utils.js"></script>
+  <style type="text/css">
+    .main-subtop {
+      padding: 20px 40px;
+      width: calc(100vw - 80px);
+      position: fixed;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+      top: -100;
+      transition: 1s cubic-bezier(.13, .43, .14, 1);
+      backdrop-filter: blur(30px);
+      background-color: var(--main-top-color);
+    }
+
+    .main-content {
+      padding-top: 100px;
+      margin: 0 10%;
+      transition: 1s cubic-bezier(.13, .43, .14, 1);
+      opacity: 0;
+    }
+
+    .main-content-info a {
+      color: var(--main-btn-text-color)
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <div class="main-top use-font-bb2">
+      <div>
+        <button style="margin-left: 0" class="btn-circle btn-secondary btn" onclick="back()">
+          <i style="color: var(--main-btn-text-color)" class="fas fa-angle-left"></i>
+        </button>
+        <span style="font-size: 30px; margin-left: 20px; font-weight: bold;">Sketch</span>
+      </div>
+      <div>
+        <button id="themeModeSW" class="btn-circle btn-secondary btn">
+          <i style="color: var(--main-btn-text-color)" class="fas fa-adjust"></i>
+        </button>
+      </div>
+    </div>
+    <div class="main-content use-font-bb2">
+      <div class="main-content-info">
+        <div align="center">
+          <img alt="react-sketchapp" src="https://cldup.com/MxSVEkc_gb.png"
+            style="max-height:163px; width:100; height: auto; max-width:100%" />
+        </div>
+
+        <div align="center">
+          <strong>render React components to Sketch; tailor-made for design systems</strong>
+        </div>
+
+        <h2 id="quick-start-">Quick-start 🏃‍</h2>
+        <p>First, make sure you have installed <a href="http://sketch.com">Sketch</a> version 50+, &amp; a recent <a
+            href="https://nodejs.org/en/download/">npm</a>.</p>
+        <p>Open a new Sketch file, then in a terminal:</p>
+        <pre><code class="lang-bash">git clone https:<span class="hljs-comment">//github.com/airbnb/react-sketchapp.git</span>
+cd react-sketchapp/examples/basic-<span class="hljs-built_in">setup</span> &amp;&amp; npm install
+npm <span class="hljs-built_in">run</span> render
+</code></pre>
+        <p>Next, <a href="https://github.com/airbnb/react-sketchapp/tree/master/examples">check out some more
+            examples</a>!</p>
+        <p><img width="100%"
+            src="https://cloud.githubusercontent.com/assets/591643/24777148/e742cd0e-1ad8-11e7-8751-090f6b2db514.png"
+            alt="readme-intro"></p>
+        <p><a href="https://www.npmjs.com/package/react-sketchapp"><img
+              src="https://img.shields.io/npm/v/react-sketchapp.svg" alt="npm"></a> <img
+            src="https://img.shields.io/badge/Sketch.app-43--50-brightgreen.svg" alt="Sketch.app"> <a
+            href="https://travis-ci.org/airbnb/react-sketchapp"><img
+              src="https://img.shields.io/travis/rust-lang/rust.svg" alt="Travis"></a></p>
+        <h2 id="why-">Why?!</h2>
+        <p>Managing the assets of design systems in Sketch is complex, error-prone and time consuming. Sketch is
+          scriptable, but the API often changes. React provides the perfect wrapper to build reusable documents in a way
+          already familiar to JavaScript developers.</p>
+        <h2 id="what-does-the-code-look-like-">What does the code look like?</h2>
+        <pre><code class="lang-js"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> { render, Text, Artboard } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-sketchapp'</span>;
+<span class="hljs-keyword">const</span> App = <span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Artboard</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Text</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">fontFamily:</span> '<span class="hljs-attr">Comic</span> <span class="hljs-attr">Sans</span> <span class="hljs-attr">MS</span>', <span class="hljs-attr">color:</span> '<span class="hljs-attr">hotPink</span>' }}&gt;</span>{props.message}<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">Artboard</span>&gt;</span></span>
+);
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> context =&gt; {
+  render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span> <span class="hljs-attr">message</span>=<span class="hljs-string">"Hello world!"</span> /&gt;</span>, context.document.currentPage());
+};</span>
+</code></pre>
+        <h2 id="what-can-i-do-with-it-">What can I do with it?</h2>
+        <ul>
+          <li><strong>Manage design systems—</strong> <code>react-sketchapp</code> was built for <a
+              href="http://airbnb.design/building-a-visual-language/">Airbnb’s design system</a>; this is the easiest
+            way to manage Sketch assets in a large design system</li>
+          <li><strong>Use real components for designs—</strong> Implement your designs in code as React components and
+            render them into Sketch</li>
+          <li><strong>Design with real data—</strong> Designing with data is important but challenging;
+            <code>react-sketchapp</code> makes it simple to fetch and incorporate real data into your Sketch files
+          </li>
+          <li><strong>Build new tools on top of Sketch—</strong> the easiest way to use Sketch as a canvas for custom
+            design tooling</li>
+        </ul>
+        <p>Found a novel use? We&#39;d love to hear about it!</p>
+        <p><a href="http://airbnb.design/painting-with-code/">Read more about why we built it</a></p>
+        <h2 id="documentation">Documentation</h2>
+        <ul>
+          <li><a href="http://airbnb.io/react-sketchapp/docs/examples.html">Examples</a></li>
+          <li><a href="http://airbnb.io/react-sketchapp/docs/API.html">API Reference</a></li>
+          <li><a href="http://airbnb.io/react-sketchapp/docs/guides/styling.html">Styling</a></li>
+          <li><a href="http://airbnb.io/react-sketchapp/docs/guides/universal-rendering.html">Universal Rendering</a>
+          </li>
+          <li><a href="http://airbnb.io/react-sketchapp/docs/guides/data-fetching.html">Data Fetching</a></li>
+          <li><a href="http://airbnb.io/react-sketchapp/docs/FAQ.html">FAQ</a></li>
+          <li><a href="https://github.com/airbnb/react-sketchapp/blob/master/.github/CONTRIBUTING.md">Contributing</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    //黑夜模式开关
+    let themeModeSW = document.getElementById("themeModeSW")
+    themeModeSW.onclick = () => {
+      nowThemeMode === THEME_MODE.LIGHT ? nowThemeMode = THEME_MODE.NIGHT : nowThemeMode = THEME_MODE.LIGHT
+      setThemeMode(nowThemeMode)
+    }
+
+    const loadContent = () => {
+      let jqElements = $('.main-content')
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve()
+        }, 1000)
+      }).then(() => {
+        jqElements.addClass("notransition")
+        jqElements.css("transform", "translate(0%, 100px)")
+        jqElements[0].offsetHeight  //清除缓存样式，强制重排
+        jqElements.removeClass("notransition")
+        jqElements.css("opacity", 1).css("transform", "")
+      })
+    }
+
+    const back = () => {
+      history.go(-1)
+    }
+
+    $(document).ready(() => {
+      loadContent()
+    })
+  </script>
+
+</body>
+
+</html>

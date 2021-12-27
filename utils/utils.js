@@ -1,6 +1,7 @@
 // 黑夜模式与白天模式
 const setThemeMode = (mode) => {
   const themeData = {
+    '--main-top-color': 'var(--top-' + mode + ')',
     '--main-background-color': 'var(--bgc-' + mode + ')',
     '--main-btn-primary-color': 'var(--btn-prc-' + mode + ')',
     '--main-btn-secondary-color': 'var(--btn-sec-' + mode + ')',
@@ -30,7 +31,7 @@ setThemeMode(nowThemeMode)
 
 // 顶栏部分
 
-// 顶栏跳转
+// 通用跳转
 const toPage = (data) => {
   window.location.href = data.getAttribute('data-page') + '.html'
 }
@@ -46,4 +47,13 @@ const switchTop = () => {
 
 $(document).ready(() => {
   switchTop()
+
+  let jqElements0 = $('.main-top')
+  $(window).scroll(() => {
+    if ($(window).scrollTop() === 0) {
+      jqElements0.css('box-shadow', 'none')
+    } else {
+      jqElements0.css('box-shadow', '0 2px 5px 0 var(--main-btn-shadow-color)')
+    }
+  })
 })

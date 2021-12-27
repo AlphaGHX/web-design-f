@@ -66,7 +66,7 @@
       background-color: var(--main-background-color);
       transition-duration: 0.5s;
       opacity: 0;
-      transform: scale(1.1, 1.1);
+      transform: scale(1.2, 1.2);
     }
   </style>
 </head>
@@ -95,28 +95,33 @@
     </div>
     <div class="main-content use-font-bb2">
       <div class="main-content-item">
-        <div class="main-content-item-title">Design software</div>
-        <div class="main-content-item-content" onmouseenter="showInfo(this)" onmouseleave="hideInfo(this)">
+        <div class="main-content-item-title">Design</div>
+        <div style="margin-left: 0;" class="main-content-item-content" onmouseenter="showInfo(this)"
+          onmouseleave="hideInfo(this)" onclick="toPage(this)" data-page="info-sketch">
           <i class="fab fa-sketch"></i>
           <div class="main-content-item-content-info">Sketch</div>
         </div>
-        <div class="main-content-item-content" onmouseenter="showInfo(this)" onmouseleave="hideInfo(this)">
+        <div class="main-content-item-content" onmouseenter="showInfo(this)" onmouseleave="hideInfo(this)"
+          onclick="toPage(this)" data-page="info-figma">
           <i class="fab fa-figma"></i>
           <div class="main-content-item-content-info">Figma</div>
         </div>
       </div>
       <div style="clear: both;"></div>
       <div class="main-content-item">
-        <div class="main-content-item-title">Development software</div>
-        <div class="main-content-item-content" onmouseenter="showInfo(this)" onmouseleave="hideInfo(this)">
+        <div class="main-content-item-title">Development</div>
+        <div style="margin-left: 0;" class="main-content-item-content" onmouseenter="showInfo(this)"
+          onmouseleave="hideInfo(this)" onclick="toPage(this)" data-page="info-vue">
           <i class="fab fa-vuejs"></i>
           <div class="main-content-item-content-info">Vue</div>
         </div>
-        <div class="main-content-item-content" onmouseenter="showInfo(this)" onmouseleave="hideInfo(this)">
+        <div class="main-content-item-content" onmouseenter="showInfo(this)" onmouseleave="hideInfo(this)"
+          onclick="toPage(this)" data-page="info-react">
           <i class="fab fa-react"></i>
           <div class="main-content-item-content-info">React</div>
         </div>
-        <div class="main-content-item-content" onmouseenter="showInfo(this)" onmouseleave="hideInfo(this)">
+        <div class="main-content-item-content" onmouseenter="showInfo(this)" onmouseleave="hideInfo(this)"
+          onclick="toPage(this)" data-page="info-angular">
           <i class="fab fa-angular"></i>
           <div class="main-content-item-content-info">Angular</div>
         </div>
@@ -140,7 +145,7 @@
         }, 1000)
       }).then(() => {
         jqElements.addClass("notransition")
-        jqElements.css("transform", "translate(0%, 50%)")
+        jqElements.css("transform", "translate(0%, 100px)")
         jqElements[0].offsetHeight  //清除缓存样式，强制重排
         jqElements.removeClass("notransition")
         jqElements.css("opacity", 1).css("transform", "")
