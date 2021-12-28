@@ -1,0 +1,106 @@
+.main-content {
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  color: var(--main-btn-text-color);
+  overflow: hidden;
+}
+
+.main-content > div {
+  position: relative;
+}
+
+.main-content-left {
+  width: 50%;
+}
+
+.main-content-right {
+  width: 50%;
+}
+
+.main-content-light-icon {
+  position: absolute;
+  width: 100%;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 1s cubic-bezier(0.13, 0.43, 0.14, 1);
+  text-align: center;
+}
+
+.main-content-right-login {
+  position: absolute;
+  width: 50%;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 1s cubic-bezier(0.13, 0.43, 0.14, 1);
+  opacity: 0;
+}
+
+.main-content-right-login > div {
+  position: relative;
+}
+
+.inpute-text {
+  width: calc(100% - 6px);
+  font-size: 100%;
+  padding: 0;
+  caret-color: var(--main-btn-text-color);
+  color: var(--main-btn-text-color);
+  height: 34px;
+  background-color: #0000;
+  border: 3px solid var(--main-btn-text-color);
+  border-radius: 40px;
+  box-shadow: 0 2px 5px 0 var(--main-btn-shadow-color);
+  outline-style: none;
+  transition: 0.5s;
+  text-indent: 20px;
+}
+
+.inpute-text:focus {
+  box-shadow: 0 3px 20px 0 var(--main-btn-shadow-color);
+}
+
+.btn-small {
+  font-family: BalooBhaijaan2;
+  width: 100%;
+  height: 40px;
+  border: 3px solid var(--main-btn-text-color);
+  border-radius: 30px;
+  box-shadow: 0 2px 5px 0 var(--main-btn-shadow-color);
+  font-size: 18px;
+  line-height: 37px;
+  text-align: center;
+  transition-duration: 0.2s;
+  cursor: pointer;
+  color: var(--main-btn-text-color);
+}
+
+.btn-small:hover {
+  box-shadow: 0 3px 20px 0 var(--main-btn-shadow-color);
+}
+
+.btn-small:active {
+  box-shadow: 0 2px 5px 0 var(--main-btn-shadow-color);
+  transform: scale(98%, 98%);
+}
+
+.placeholder {
+  position: absolute;
+  height: 6px;
+  line-height: 7px;
+  top: 50%;
+  left: 20px;
+  transform: translate(0, -45%);
+  font-size: 18px;
+  z-index: -1;
+  transition: 0.2s cubic-bezier(0.13, 0.43, 0.14, 1);
+}
+
+.placeholder-active {
+  top: 0% !important;
+  font-size: 15px !important;
+  background-color: var(--main-background-color);
+  z-index: 1 !important;
+}

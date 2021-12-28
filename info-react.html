@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sketch</title>
+    <link rel="stylesheet" type="text/css" href="styles/theme.css">
+    <link rel="stylesheet" type="text/css" href="styles/font-awesome-min.css">
+    <script src="utils/jquery-min.js"></script>
+    <!-- <script src="https://kit.fontawesome.com/49f009723b.js" crossorigin="anonymous"></script> -->
+    <script type="text/javascript" src="utils/utils.js"></script>
+    <style type="text/css">
+        .main-subtop {
+            padding: 20px 40px;
+            width: calc(100vw - 80px);
+            position: fixed;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            top: -100;
+            transition: 1s cubic-bezier(.13, .43, .14, 1);
+            backdrop-filter: blur(30px);
+            background-color: var(--main-top-color);
+        }
+
+        .main-content {
+            padding-top: 100px;
+            margin: 0 10%;
+            transition: 1s cubic-bezier(.13, .43, .14, 1);
+            opacity: 0;
+        }
+
+        .main-content-info a {
+            color: var(--main-btn-text-color)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="main-top use-font-bb2">
+            <div>
+                <button style="margin-left: 0" class="btn-circle btn-secondary btn" onclick="back()">
+                    <i style="color: var(--main-btn-text-color)" class="fas fa-angle-left"></i>
+                </button>
+                <span style="font-size: 30px; margin-left: 20px; font-weight: bold;">Sketch</span>
+            </div>
+            <div>
+                <button id="themeModeSW" class="btn-circle btn-secondary btn">
+                    <i style="color: var(--main-btn-text-color)" class="fas fa-adjust"></i>
+                </button>
+            </div>
+        </div>
+        <div class="main-content use-font-bb2">
+            <h1
+                id="create-react-app-build-status-https-dev-azure-com-facebook-create-react-app-_apis-build-status-facebook-create-react-app-branchname-main-https-dev-azure-com-facebook-create-react-app-_build-latest-definitionid-1-branchname-main-prs-welcome-https-img-shields-io-badge-prs-welcome-green-svg-https-github-com-facebook-create-react-app-blob-main-contributing-md-">
+                Create React App <a
+                    href="https://dev.azure.com/facebook/create-react-app/_build/latest?definitionId=1&amp;branchName=main"><img
+                        src="https://dev.azure.com/facebook/create-react-app/_apis/build/status/facebook.create-react-app?branchName=main"
+                        alt="Build Status"></a> <a
+                    href="https://github.com/facebook/create-react-app/blob/main/CONTRIBUTING.md"><img
+                        src="https://img.shields.io/badge/PRs-welcome-green.svg" alt="PRs Welcome"></a></h1>
+            <p><img alt="Logo" align="right" src="https://create-react-app.dev/img/logo.svg" width="20%" /></p>
+            <p>Create React apps with no build configuration.</p>
+            <ul>
+                <li><a href="#creating-an-app">Creating an App</a> – How to create a new app.</li>
+                <li><a href="https://facebook.github.io/create-react-app/">User Guide</a> – How to develop apps
+                    bootstrapped with Create React App.</li>
+            </ul>
+            <p>Create React App works on macOS, Windows, and Linux.<br>
+                If something doesn’t work, please <a href="https://github.com/facebook/create-react-app/issues/new">file
+                    an issue</a>.<br>
+                If you have questions or need help, please ask in <a
+                    href="https://github.com/facebook/create-react-app/discussions">GitHub Discussions</a>.</p>
+            <h2 id="quick-overview">Quick Overview</h2>
+            <pre><code class="lang-sh"><span class="hljs-string">npx </span><span class="hljs-built_in">create-react-app</span> <span class="hljs-string">my-app
+</span><span class="hljs-string">cd </span><span class="hljs-string">my-app
+</span><span class="hljs-string">npm </span><span class="hljs-string">start</span>
+</code></pre>
+            <p>If you&#39;ve previously installed <code>create-react-app</code> globally via
+                <code>npm install -g create-react-app</code>, we recommend you uninstall the package using
+                <code>npm uninstall -g create-react-app</code> or <code>yarn global remove create-react-app</code> to
+                ensure that npx always uses the latest version.</p>
+            <p><em>(<a href="https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b">npx</a>
+                    comes with npm 5.2+ and higher, see <a
+                        href="https://gist.github.com/gaearon/4064d3c23a77c74a3614c498a8bb1c5f">instructions for older
+                        npm versions</a>)</em></p>
+            <p>Then open <a href="http://localhost:3000/">http://localhost:3000/</a> to see your app.<br>
+                When you’re ready to deploy to production, create a minified bundle with <code>npm run build</code>.</p>
+            <p align='center'>
+                <img src='https://cdn.jsdelivr.net/gh/facebook/create-react-app@27b42ac7efa018f2541153ab30d63180f5fa39e0/screencast.svg'
+                    width='600' alt='npm start'>
+            </p>
+
+            <h3 id="get-started-immediately">Get Started Immediately</h3>
+            <p>You <strong>don’t</strong> need to install or configure tools like webpack or Babel.<br>
+                They are preconfigured and hidden so that you can focus on the code.</p>
+            <p>Create a project, and you’re good to go.</p>
+            <h2 id="creating-an-app">Creating an App</h2>
+            <p><strong>You’ll need to have Node 14.0.0 or later version on your local development machine</strong> (but
+                it’s not required on the server). We recommend using the latest LTS version. You can use <a
+                    href="https://github.com/creationix/nvm#installation">nvm</a> (macOS/Linux) or <a
+                    href="https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows">nvm-windows</a>
+                to switch Node versions between different projects.</p>
+            <p>To create a new app, you may choose one of the following methods:</p>
+            <h3 id="npx">npx</h3>
+            <pre><code class="lang-sh"><span class="hljs-string">npx </span><span class="hljs-built_in">create-react-app</span> <span class="hljs-string">my-app</span>
+</code></pre>
+            <p><em>(<a href="https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b">npx</a>
+                    is a package runner tool that comes with npm 5.2+ and higher, see <a
+                        href="https://gist.github.com/gaearon/4064d3c23a77c74a3614c498a8bb1c5f">instructions for older
+                        npm versions</a>)</em></p>
+            <h3 id="npm">npm</h3>
+            <pre><code class="lang-sh">npm init react-<span class="hljs-keyword">app</span> my-<span class="hljs-keyword">app</span>
+</code></pre>
+            <p><em><code>npm init &lt;initializer&gt;</code> is available in npm 6+</em></p>
+            <h3 id="yarn">Yarn</h3>
+            <pre><code class="lang-sh">yarn create react-<span class="hljs-keyword">app</span> my-<span class="hljs-keyword">app</span>
+</code></pre>
+            <p><em><a
+                        href="https://yarnpkg.com/lang/en/docs/cli/create/"><code>yarn create &lt;starter-kit-package&gt;</code></a>
+                    is available in Yarn 0.25+</em></p>
+            <p>It will create a directory called <code>my-app</code> inside the current folder.<br>
+                Inside that directory, it will generate the initial project structure and install the transitive
+                dependencies:</p>
+            <pre><code>my-app
+├── README<span class="hljs-selector-class">.md</span>
+├── node_modules
+├── package<span class="hljs-selector-class">.json</span>
+├── <span class="hljs-selector-class">.gitignore</span>
+├── public
+│   ├── favicon<span class="hljs-selector-class">.ico</span>
+│   ├── index<span class="hljs-selector-class">.html</span>
+│   └── manifest<span class="hljs-selector-class">.json</span>
+└── src
+    ├── App<span class="hljs-selector-class">.css</span>
+    ├── App<span class="hljs-selector-class">.js</span>
+    ├── App<span class="hljs-selector-class">.test</span><span class="hljs-selector-class">.js</span>
+    ├── index<span class="hljs-selector-class">.css</span>
+    ├── index<span class="hljs-selector-class">.js</span>
+    ├── logo<span class="hljs-selector-class">.svg</span>
+    └── serviceWorker<span class="hljs-selector-class">.js</span>
+    └── setupTests.js
+</code></pre>
+            <p>No configuration or complicated folder structures, only the files you need to build your app.<br>
+                Once the installation is done, you can open your project folder:</p>
+            <pre><code class="lang-sh"><span class="hljs-keyword">cd</span> my-<span class="hljs-keyword">app</span>
+</code></pre>
+            <p>Inside the newly created project, you can run some built-in commands:</p>
+            <h3 id="-npm-start-or-yarn-start-"><code>npm start</code> or <code>yarn start</code></h3>
+            <p>Runs the app in development mode.<br>
+                Open <a href="http://localhost:3000">http://localhost:3000</a> to view it in the browser.</p>
+            <p>The page will automatically reload if you make changes to the code.<br>
+                You will see the build errors and lint warnings in the console.</p>
+            <p align='center'>
+                <img src='https://cdn.jsdelivr.net/gh/marionebl/create-react-app@9f6282671c54f0874afd37a72f6689727b562498/screencast-error.svg'
+                    width='600' alt='Build errors'>
+            </p>
+
+            <h3 id="-npm-test-or-yarn-test-"><code>npm test</code> or <code>yarn test</code></h3>
+            <p>Runs the test watcher in an interactive mode.<br>
+                By default, runs tests related to files changed since the last commit.</p>
+            <p><a href="https://facebook.github.io/create-react-app/docs/running-tests">Read more about testing.</a></p>
+            <h3 id="-npm-run-build-or-yarn-build-"><code>npm run build</code> or <code>yarn build</code></h3>
+            <p>Builds the app for production to the <code>build</code> folder.<br>
+                It correctly bundles React in production mode and optimizes the build for the best performance.</p>
+            <p>The build is minified and the filenames include the hashes.<br></p>
+            <p>Your app is ready to be deployed.</p>
+            <h2 id="user-guide">User Guide</h2>
+            <p>You can find detailed instructions on using Create React App and many tips in <a
+                    href="https://facebook.github.io/create-react-app/">its documentation</a>.</p>
+            <h2 id="how-to-update-to-new-versions-">How to Update to New Versions?</h2>
+            <p>Please refer to the <a
+                    href="https://facebook.github.io/create-react-app/docs/updating-to-new-releases">User Guide</a> for
+                this and other information.</p>
+            <h2 id="philosophy">Philosophy</h2>
+            <ul>
+                <li>
+                    <p><strong>One Dependency:</strong> There is only one build dependency. It uses webpack, Babel,
+                        ESLint, and other amazing projects, but provides a cohesive curated experience on top of them.
+                    </p>
+                </li>
+                <li>
+                    <p><strong>No Configuration Required:</strong> You don&#39;t need to configure anything. A
+                        reasonably good configuration of both development and production builds is handled for you so
+                        you can focus on writing code.</p>
+                </li>
+                <li>
+                    <p><strong>No Lock-In:</strong> You can “eject” to a custom setup at any time. Run a single command,
+                        and all the configuration and build dependencies will be moved directly into your project, so
+                        you can pick up right where you left off.</p>
+                </li>
+            </ul>
+            <h2 id="what-s-included-">What’s Included?</h2>
+            <p>Your environment will have everything you need to build a modern single-page React app:</p>
+            <ul>
+                <li>React, JSX, ES6, TypeScript and Flow syntax support.</li>
+                <li>Language extras beyond ES6 like the object spread operator.</li>
+                <li>Autoprefixed CSS, so you don’t need <code>-webkit-</code> or other prefixes.</li>
+                <li>A fast interactive unit test runner with built-in support for coverage reporting.</li>
+                <li>A live development server that warns about common mistakes.</li>
+                <li>A build script to bundle JS, CSS, and images for production, with hashes and sourcemaps.</li>
+                <li>An offline-first <a
+                        href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">service
+                        worker</a> and a <a
+                        href="https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/">web
+                        app manifest</a>, meeting all the <a
+                        href="https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app">Progressive
+                        Web App</a> criteria. (<em>Note: Using the service worker is opt-in as of
+                        <code>react-scripts@2.0.0</code> and higher</em>)</li>
+                <li>Hassle-free updates for the above tools with a single dependency.</li>
+            </ul>
+            <p>Check out <a href="https://github.com/nitishdayal/cra_closer_look">this guide</a> for an overview of how
+                these tools fit together.</p>
+            <p>The tradeoff is that <strong>these tools are preconfigured to work in a specific way</strong>. If your
+                project needs more customization, you can <a
+                    href="https://facebook.github.io/create-react-app/docs/available-scripts#npm-run-eject">&quot;eject&quot;</a>
+                and customize it, but then you will need to maintain this configuration.</p>
+            <h2 id="popular-alternatives">Popular Alternatives</h2>
+            <p>Create React App is a great fit for:</p>
+            <ul>
+                <li><strong>Learning React</strong> in a comfortable and feature-rich development environment.</li>
+                <li><strong>Starting new single-page React applications.</strong></li>
+                <li><strong>Creating examples</strong> with React for your libraries and components.</li>
+            </ul>
+            <p>Here are a few common cases where you might want to try something else:</p>
+            <ul>
+                <li>
+                    <p>If you want to <strong>try React</strong> without hundreds of transitive build tool dependencies,
+                        consider <a href="https://reactjs.org/docs/try-react.html">using a single HTML file or an online
+                            sandbox instead</a>.</p>
+                </li>
+                <li>
+                    <p>If you need to <strong>integrate React code with a server-side template framework</strong> like
+                        Rails, Django or Symfony, or if you’re <strong>not building a single-page app</strong>, consider
+                        using <a href="https://github.com/insin/nwb">nwb</a>, or <a
+                            href="https://neutrino.js.org/">Neutrino</a> which are more flexible. For Rails
+                        specifically, you can use <a href="https://github.com/rails/webpacker">Rails Webpacker</a>. For
+                        Symfony, try <a
+                            href="https://symfony.com/doc/current/frontend/encore/reactjs.html">Symfony&#39;s webpack
+                            Encore</a>.</p>
+                </li>
+                <li>
+                    <p>If you need to <strong>publish a React component</strong>, <a
+                            href="https://github.com/insin/nwb">nwb</a> can <a
+                            href="https://github.com/insin/nwb#react-components-and-libraries">also do this</a>, as well
+                        as <a href="https://neutrino.js.org/packages/react-components/">Neutrino&#39;s react-components
+                            preset</a>.</p>
+                </li>
+                <li>
+                    <p>If you want to do <strong>server rendering</strong> with React and Node.js, check out <a
+                            href="https://nextjs.org/">Next.js</a> or <a
+                            href="https://github.com/jaredpalmer/razzle">Razzle</a>. Create React App is agnostic of the
+                        backend, and only produces static HTML/JS/CSS bundles.</p>
+                </li>
+                <li>
+                    <p>If your website is <strong>mostly static</strong> (for example, a portfolio or a blog), consider
+                        using <a href="https://www.gatsbyjs.org/">Gatsby</a> or <a
+                            href="https://nextjs.org/">Next.js</a>. Unlike Create React App, Gatsby pre-renders the
+                        website into HTML at build time. Next.js supports both server rendering and pre-rendering.</p>
+                </li>
+                <li>
+                    <p>Finally, if you need <strong>more customization</strong>, check out <a
+                            href="https://neutrino.js.org/">Neutrino</a> and its <a
+                            href="https://neutrino.js.org/packages/react/">React preset</a>.</p>
+                </li>
+            </ul>
+            <p>All of the above tools can work with little to no configuration.</p>
+            <p>If you prefer configuring the build yourself, <a
+                    href="https://reactjs.org/docs/add-react-to-an-existing-app.html">follow this guide</a>.</p>
+            <h2 id="react-native">React Native</h2>
+            <p>Looking for something similar, but for React Native?<br>
+                Check out <a href="https://github.com/expo/expo-cli">Expo CLI</a>.</p>
+            <h2 id="contributing">Contributing</h2>
+            <p>We&#39;d love to have your helping hand on <code>create-react-app</code>! See <a
+                    href="CONTRIBUTING.md">CONTRIBUTING.md</a> for more information on what we&#39;re looking for and
+                how to get started.</p>
+            <h2 id="supporting-create-react-app">Supporting Create React App</h2>
+            <p>Create React App is a community maintained project and all contributors are volunteers. If you&#39;d like
+                to support the future development of Create React App then please consider donating to our <a
+                    href="https://opencollective.com/create-react-app">Open Collective</a>.</p>
+            <h2 id="credits">Credits</h2>
+            <p>This project exists thanks to all the people who <a href="CONTRIBUTING.md">contribute</a>.<br>
+                <a href="https://github.com/facebook/create-react-app/graphs/contributors"><img
+                        src="https://opencollective.com/create-react-app/contributors.svg?width=890&button=false" /></a>
+            </p>
+            <p>Thanks to <a href="https://www.netlify.com/">Netlify</a> for hosting our documentation.</p>
+            <h2 id="acknowledgements">Acknowledgements</h2>
+            <p>We are grateful to the authors of existing related projects for their ideas and collaboration:</p>
+            <ul>
+                <li><a href="https://github.com/eanplatter">@eanplatter</a></li>
+                <li><a href="https://github.com/insin">@insin</a></li>
+                <li><a href="https://github.com/mxstbr">@mxstbr</a></li>
+            </ul>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        //黑夜模式开关
+        let themeModeSW = document.getElementById("themeModeSW")
+        themeModeSW.onclick = () => {
+            nowThemeMode === THEME_MODE.LIGHT ? nowThemeMode = THEME_MODE.NIGHT : nowThemeMode = THEME_MODE.LIGHT
+            setThemeMode(nowThemeMode)
+        }
+
+        const loadContent = () => {
+            let jqElements = $('.main-content')
+            new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve()
+                }, 1000)
+            }).then(() => {
+                jqElements.addClass("notransition")
+                jqElements.css("transform", "translate(0%, 100px)")
+                jqElements[0].offsetHeight  //清除缓存样式，强制重排
+                jqElements.removeClass("notransition")
+                jqElements.css("opacity", 1).css("transform", "")
+            })
+        }
+
+        const back = () => {
+            history.go(-1)
+        }
+
+        $(document).ready(() => {
+            loadContent()
+        })
+    </script>
+
+</body>
+
+</html>

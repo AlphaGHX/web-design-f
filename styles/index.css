@@ -1,0 +1,71 @@
+.main-content {
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  color: var(--main-btn-text-color);
+  overflow: hidden;
+}
+
+.main-content > div {
+  position: relative;
+}
+
+.main-content-left {
+  width: 50%;
+}
+
+.main-content-right {
+  width: 50%;
+}
+
+.main-content-left-text {
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-30%, -50%);
+  transition: 1s cubic-bezier(0.13, 0.43, 0.14, 1);
+  opacity: 0;
+}
+
+.main-content-left-btn {
+  width: 80%;
+  position: absolute;
+  top: 70%;
+  left: 40%;
+  transform: translate(-30%, -50%);
+}
+
+.main-content-right-icon {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 1s cubic-bezier(0.13, 0.43, 0.14, 1);
+  cursor: pointer;
+}
+
+.btn-small {
+  font-family: BalooBhaijaan2;
+  height: 40px;
+  min-width: 40px;
+  border: 3px solid var(--main-btn-text-color);
+  border-radius: 30px;
+  box-shadow: 0 2px 5px 0 var(--main-btn-shadow-color);
+  font-size: 18px;
+  line-height: 37px;
+  text-align: center;
+  transition-duration: 0.2s;
+  cursor: pointer;
+  color: var(--main-btn-text-color);
+  margin-right: 20px;
+}
+
+.btn-small:hover {
+  box-shadow: 0 3px 20px 0 var(--main-btn-shadow-color);
+}
+
+.btn-small:active {
+  box-shadow: 0 2px 5px 0 var(--main-btn-shadow-color);
+  transform: scale(98%, 98%);
+}
