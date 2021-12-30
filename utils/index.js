@@ -162,7 +162,33 @@ const toRight = () => {
   nowItem++
 }
 
-//开始循环播放
 $(document).ready(() => {
   playSwitch(5000)
+
+  let jqElements0 = $('#info0')
+  let jqElements1 = $('#info1')
+  let jqElements2 = $('#info2')
+  $(window).scroll(() => {
+    if ($(window).scrollTop() > 0.95 * $(window).height()) {
+      jqElements0.find('#switchIconInfo').css('left', '50%')
+      jqElements0.find('#switchTextInfo').css('left', '35%').css('opacity', 1)
+    } else {
+      jqElements0.find('#switchIconInfo').css('left', '')
+      jqElements0.find('#switchTextInfo').css('left', '').css('opacity', '')
+    }
+    if ($(window).scrollTop() > 1.95 * $(window).height()) {
+      jqElements1.find('#switchIconInfo').css('left', '50%')
+      jqElements1.find('#switchTextInfo').css('left', '35%').css('opacity', 1)
+    } else {
+      jqElements1.find('#switchIconInfo').css('left', '')
+      jqElements1.find('#switchTextInfo').css('left', '').css('opacity', '')
+    }
+    if ($(window).scrollTop() > 2.95 * $(window).height()) {
+      jqElements2.find('#switchIconInfo').css('left', '50%')
+      jqElements2.find('#switchTextInfo').css('left', '35%').css('opacity', 1)
+    } else {
+      jqElements2.find('#switchIconInfo').css('left', '')
+      jqElements2.find('#switchTextInfo').css('left', '').css('opacity', '')
+    }
+  })
 })

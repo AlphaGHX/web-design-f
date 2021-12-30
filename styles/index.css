@@ -1,12 +1,32 @@
 .main-content {
   height: 100vh;
+  width: 100%;
   min-height: 600px;
   display: flex;
+  position: fixed;
   color: var(--main-btn-text-color);
   overflow: hidden;
 }
 
+.main-content-info {
+  height: 100vh;
+  display: flex;
+  color: var(--main-btn-text-color);
+  overflow: hidden;
+  position: relative;
+  background-color: var(--main-background-color);
+  transition-duration: 0.5s;
+}
+
+.main-content-info-more {
+  box-shadow: 0 -2px 5px 0 var(--main-btn-shadow-color);
+}
+
 .main-content > div {
+  position: relative;
+}
+
+.main-content-info > div {
   position: relative;
 }
 
@@ -28,6 +48,16 @@
   opacity: 0;
 }
 
+.main-content-left-text-info {
+  width: 80%;
+  position: absolute;
+  top: 55%;
+  left: 20%;
+  transform: translate(-30%, -50%);
+  transition: 1s cubic-bezier(0.13, 0.43, 0.14, 1);
+  opacity: 0;
+}
+
 .main-content-left-btn {
   width: 80%;
   position: absolute;
@@ -40,6 +70,15 @@
   position: absolute;
   top: 55%;
   left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 1s cubic-bezier(0.13, 0.43, 0.14, 1);
+  cursor: pointer;
+}
+
+.main-content-right-icon-info {
+  position: absolute;
+  top: 55%;
+  left: 100%;
   transform: translate(-50%, -50%);
   transition: 1s cubic-bezier(0.13, 0.43, 0.14, 1);
   cursor: pointer;

@@ -27,6 +27,8 @@ let nowThemeMode = sessionStorage.nowThemeMode
   ? sessionStorage.nowThemeMode
   : THEME_MODE.LIGHT
 
+setThemeMode(nowThemeMode)
+
 // 顶栏部分
 
 // 通用跳转
@@ -44,8 +46,6 @@ const switchTop = () => {
 }
 
 $(document).ready(() => {
-  setThemeMode(nowThemeMode)
-
   switchTop()
 
   let jqElements0 = $('.main-top')
